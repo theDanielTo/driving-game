@@ -10,21 +10,5 @@ body {
 
 img {
   width: 200px;
-  transition: transform 500;
-}
-
-.face-right {
-  transform: rotate(0deg);
-}
-
-.face-down {
-  transform: rotate(90deg);
-}
-
-.face-left {
-  transform: rotate(180deg);
-}
-
-.face-up {
-  transform: rotate(-90deg);
+  transition: transform 5000;
 }
