@@ -10,5 +10,22 @@ body {
 
 img {
   width: 200px;
-  transition: transform 5000;
+  position: absolute;
+  transition: transform 200ms;
+}
+
+.face-right {
+  transform: rotate(0deg);
+}
+
+.face-down {
+  transform: rotate(90deg);
+}
+
+.face-left {
+  transform: rotate(180deg);
+}
+
+.face-up {
+  transform: rotate(-90deg);
 }
