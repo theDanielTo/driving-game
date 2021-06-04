@@ -12,7 +12,6 @@ let intervalID = null;
 let carMoving = false;
 
 document.addEventListener('keydown', function (event) {
-
   const curPerspective = carEl.className;
   if (event.key === 'ArrowRight') {
     carEl.classList.replace(curPerspective, carData.right);
@@ -34,7 +33,6 @@ document.addEventListener('keydown', function (event) {
       clearInterval(intervalID);
       carMoving = false;
     }
-
   }
 });
 
