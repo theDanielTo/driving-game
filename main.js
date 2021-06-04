@@ -12,31 +12,45 @@ let intervalID = null;
 let carMoving = false;
 
 document.addEventListener('keydown', function (event) {
-  const curPerspective = carEl.className;
-  if (event.key === 'ArrowRight') {
-    carEl.classList.replace(curPerspective, carData.right);
-    carData.facing = 'right';
-  } else if (event.key === 'ArrowDown') {
-    carEl.classList.replace(curPerspective, carData.down);
-    carData.facing = 'down';
-  } else if (event.key === 'ArrowLeft') {
-    carEl.classList.replace(curPerspective, carData.left);
-    carData.facing = 'left';
-  } else if (event.key === 'ArrowUp') {
-    carEl.classList.replace(curPerspective, carData.up);
-    carData.facing = 'up';
-  } else if (event.key === ' ') {
+  const direction = event.key.slice(5).toLowerCase();
+  if (event.key === ' ') {
     if (!carMoving) {
-      startCar(carData.facing);
+      steerCar(carData.facing);
       carMoving = true;
     } else {
       clearInterval(intervalID);
       carMoving = false;
     }
-  }
+  } else turnCar(direction);
+  // if (event.key === 'ArrowRight') {
+
+  // } else if (event.key === 'ArrowDown') {
+  //   carEl.classList.replace(curPerspective, carData.down);
+  //   carData.facing = 'down';
+  //   clearInterval(intervalID);
+  //   if (carMoving) steerCar(carData.facing);
+  // } else if (event.key === 'ArrowLeft') {
+  //   carEl.classList.replace(curPerspective, carData.left);
+  //   carData.facing = 'left';
+  //   clearInterval(intervalID);
+  //   if (carMoving) steerCar(carData.facing);
+  // } else if (event.key === 'ArrowUp') {
+  //   carEl.classList.replace(curPerspective, carData.up);
+  //   carData.facing = 'up';
+  //   clearInterval(intervalID);
+  //   if (carMoving) steerCar(carData.facing);
+  // } else
 });
 
-function startCar(direction) {
+function turnCar(direction) {
+  const curPerspective = carEl.className;
+  carEl.classList.replace(curPerspective, carData[direction]);
+  carData.facing = direction;
+  clearInterval(intervalID);
+  if (carMoving) steerCar(carData.facing);
+}
+
+function steerCar(direction) {
   const styleDirection = (direction === 'left' || direction === 'right') ? 'left' : 'top';
   const position = (direction === 'right' || direction === 'left') ? 'xPos' : 'yPos';
   const pxMove = (direction === 'left' || direction === 'up') ? -4 : 4;
