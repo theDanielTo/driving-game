@@ -19,11 +19,18 @@ startBtn.addEventListener('click', function (event) {
   gamePrompt.classList.add('hidden');
   carEl = document.createElement('img');
   carEl.className = 'car face-right';
-  carEl.src = 'images/f1.svg';
-  carEl.alt = 'F1 Racecar';
+  carEl.src = getCarImgSrc(carSelectMenu.value);
+  carEl.alt = carSelectMenu;
   gameScreen.appendChild(carEl);
   document.addEventListener('keydown', carControls);
 });
+
+function getCarImgSrc(value) {
+  if (value === 'red-car') return 'images/f1.svg';
+  if (value === 'green-car') return 'images/car-green.png';
+  if (value === 'white-car') return 'images/car-dragon.png';
+  if (value === 'police-car') return 'images/car-police.png';
+}
 
 function carControls(event) {
   const direction = event.key.slice(5).toLowerCase();
