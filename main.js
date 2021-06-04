@@ -7,11 +7,11 @@ const carData = {
   xPos: 0,
   yPos: 0
 };
-let intervalID = null;
 const carEl = document.querySelector('img');
+let intervalID = null;
+let carMoving = false;
 
 document.addEventListener('keydown', function (event) {
-  clearInterval(intervalID);
   const curPerspective = carEl.className;
   if (event.key === 'ArrowRight') {
     carEl.classList.replace(curPerspective, carData.right);
@@ -26,7 +26,13 @@ document.addEventListener('keydown', function (event) {
     carEl.classList.replace(curPerspective, carData.up);
     carData.facing = 'up';
   } else if (event.key === ' ') {
-    startCar(carData.facing);
+    if (!carMoving) {
+      startCar(carData.facing);
+      carMoving = true;
+    } else {
+      clearInterval(intervalID);
+      carMoving = false;
+    }
   }
 });
 

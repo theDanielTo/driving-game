@@ -11,9 +11,6 @@ body {
 img {
   width: 150px;
   position: absolute;
-
-  /* top: 0;
-  left: 0; */
   transition: transform 200ms;
 }
 
