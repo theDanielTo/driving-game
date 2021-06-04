@@ -7,11 +7,25 @@ const carData = {
   xPos: 0,
   yPos: 0
 };
-const carEl = document.querySelector('img');
+const gameScreen = document.querySelector('body');
+const gamePrompt = document.querySelector('.prompt');
+const carSelectMenu = document.querySelector('#car-select');
+const startBtn = document.querySelector('.start-btn');
+let carEl = null;
 let intervalID = null;
 let carMoving = false;
 
-document.addEventListener('keydown', function (event) {
+startBtn.addEventListener('click', function (event) {
+  gamePrompt.classList.add('hidden');
+  carEl = document.createElement('img');
+  carEl.className = 'car face-right';
+  carEl.src = 'images/f1.svg';
+  carEl.alt = 'F1 Racecar';
+  gameScreen.appendChild(carEl);
+  document.addEventListener('keydown', carControls);
+});
+
+function carControls(event) {
   const direction = event.key.slice(5).toLowerCase();
   if (event.key === ' ') {
     if (!carMoving) {
@@ -22,28 +36,10 @@ document.addEventListener('keydown', function (event) {
       carMoving = false;
     }
   } else turnCar(direction);
-  // if (event.key === 'ArrowRight') {
-
-  // } else if (event.key === 'ArrowDown') {
-  //   carEl.classList.replace(curPerspective, carData.down);
-  //   carData.facing = 'down';
-  //   clearInterval(intervalID);
-  //   if (carMoving) steerCar(carData.facing);
-  // } else if (event.key === 'ArrowLeft') {
-  //   carEl.classList.replace(curPerspective, carData.left);
-  //   carData.facing = 'left';
-  //   clearInterval(intervalID);
-  //   if (carMoving) steerCar(carData.facing);
-  // } else if (event.key === 'ArrowUp') {
-  //   carEl.classList.replace(curPerspective, carData.up);
-  //   carData.facing = 'up';
-  //   clearInterval(intervalID);
-  //   if (carMoving) steerCar(carData.facing);
-  // } else
-});
+}
 
 function turnCar(direction) {
-  const curPerspective = carEl.className;
+  const curPerspective = 'face-' + carData.facing;
   carEl.classList.replace(curPerspective, carData[direction]);
   carData.facing = direction;
   clearInterval(intervalID);

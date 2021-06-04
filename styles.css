@@ -5,12 +5,51 @@
 }
 
 body {
+  height: 100vh;
   background-color: #288d26;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-img {
+.game-start-menu {
+  font-family: 'Megrim', cursive;
+  background-color: antiquewhite;
+  padding: 2rem;
+  border-radius: 10px;
+  color: #2f5f34;
+}
+
+.prompt h1 {
+  font-size: 3rem;
+  font-weight: bolder;
+  margin-bottom: 2rem;
+}
+
+.prompt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.prompt select {
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  width: 100%;
+  background-color: #2f5f34;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.car {
   width: 150px;
   position: absolute;
+  top: 0;
+  left: 0;
   transition: transform 200ms;
 }
 
@@ -28,4 +67,8 @@ img {
 
 .face-up {
   transform: rotate(270deg);
+}
+
+.hidden {
+  display: none;
 }
